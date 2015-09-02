@@ -22,76 +22,15 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#include <Compliant/config.h>
-#include "misc/CompliantSolverMerger.h"
-#include <contact/CompliantContact.h>
+#ifndef COMPLIANT_GUI_CONFIG_H
+#define COMPLIANT_GUI_CONFIG_H
 
-namespace sofa
-{
+#include <sofa/helper/system/config.h>
 
+#ifdef SOFA_BUILD_COMPLIANT_GUI
+#  define SOFA_Compliant_gui_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#else
+#  define SOFA_Compliant_gui_API  SOFA_IMPORT_DYNAMIC_LIBRARY
+#endif
 
-namespace component
-{
-
-//Here are just several convenient functions to help user to know what contains the plugin
-
-extern "C" {
-    SOFA_Compliant_API void initExternalModule();
-    SOFA_Compliant_API const char* getModuleName();
-    SOFA_Compliant_API const char* getModuleVersion();
-    SOFA_Compliant_API const char* getModuleLicense();
-    SOFA_Compliant_API const char* getModuleDescription();
-    SOFA_Compliant_API const char* getModuleComponentList();
-}
-
-void initExternalModule()
-{
-    static bool first = true;
-    if (first)
-    {
-        first = false;
-
-        component::collision::CompliantSolverMerger::add();
-    }
-}
-
-const char* getModuleName()
-{
-    return "Compliant";
-}
-
-const char* getModuleVersion()
-{
-    return "0";
-}
-
-const char* getModuleLicense()
-{
-    return "LGPL";
-}
-
-
-const char* getModuleDescription()
-{
-    return "Simulation of deformable object using a formulation similar to the KKT system for hard constraints, regularized using a compliance matrix";
-}
-
-const char* getModuleComponentList()
-{
-    return ""; /// @TODO
-}
-
-}
-
-// Ensure that our abstract factories do the registration and avoid symbol stripping on agressive
-// compilers like the ones found on consoles.
-SOFA_Compliant_API void initCompliant()
-{
-	component::collision::registerContactClasses();
-}
-
-}
-
-
-//SOFA_LINK_CLASS(MyMappingPendulumInPlane)
-
+#endif // INITCompliantGUI_H
