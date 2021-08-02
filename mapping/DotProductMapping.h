@@ -33,7 +33,7 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
 	
     typedef DotProductMapping<TIn,TOut> self;
 	
-    typedef type::Vec<2, std::size_t> index_pair;
+    typedef type::fixed_array<std::size_t, 2> index_pair;
     typedef type::vector< index_pair > pairs_type;
 
     Data< pairs_type > pairs; ///< index pairs for computing deltas
@@ -211,7 +211,8 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
             {
                 helper::WriteOnlyAccessor<Data<pairs_type> > p(pairs);
                 p.resize(this->getFromModels()[0]->getSize());
-                for( unsigned j = 0; j < p.size(); ++j) p[j]=pair(index_pair(0,j),index_pair(1,j));
+                for( unsigned j = 0; j < p.size(); ++j) 
+                    p[j]=pair(index_pair(0,j),index_pair(1,j));
             }
             this->getToModels()[0]->resize( pairs.getValue().size() );
             AssembledMultiMapping<TIn, TOut>::reinit();
@@ -234,8 +235,8 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
         }
 
 
-        typedef type::Vec<2, unsigned> index_pair;
-        typedef type::Vec<2, index_pair> pair;
+        typedef type::fixed_array<unsigned, 2> index_pair;
+        typedef type::fixed_array<index_pair, 2> pair;
         typedef type::vector< pair > pairs_type;
         Data< pairs_type > pairs; ///< index pairs for computing deltas
 
