@@ -323,20 +323,6 @@ protected:
 		}
 	}
 	
-    virtual void updateForceMask() override
-    {
-        const pairs_type& p = pairs.getValue();
-
-        for( size_t i = 0, iend = p.size(); i < iend; ++i )
-        {
-            if( this->maskTo[0]->getEntry(i) )
-            {
-                const index_pair& indices = p[i];
-                this->maskFrom[0]->insertEntry(indices[0]);
-                this->maskFrom[1]->insertEntry(indices[1]);
-            }
-        }
-    }
 
 };
 

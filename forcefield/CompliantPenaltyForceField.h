@@ -138,14 +138,6 @@ public:
         }
     }
 
-    virtual void updateForceMask() override
-    {
-        for( unsigned int i=0 ; i<m_violated.size() ; ++i )
-            if(m_violated[i])
-                this->mstate->forceMask.insertEntry(i);
-    }
-
-
 protected:
 
     CompliantPenaltyForceField( core::behavior::MechanicalState<DataTypes> *mm = 0)

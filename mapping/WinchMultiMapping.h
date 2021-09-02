@@ -144,11 +144,6 @@ protected:
     }
 
 
-    virtual void updateForceMask()
-    {
-
-    }
-
 };
 
 #if !defined(SOFA_COMPONENT_MAPPING_WINCHMULTIMAPPING_CPP)

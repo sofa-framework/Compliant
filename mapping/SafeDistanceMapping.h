@@ -330,21 +330,6 @@ public:
 #endif /* COMPLIANT_HAVE_SOFA_GL */
     }
 
-    virtual void updateForceMask() override
-    {
-        const pairs_type& p = d_pairs.getValue();
-
-        for( size_t i = 0, iend = p.size(); i < iend; ++i )
-        {
-            if( this->maskTo->getEntry(i) )
-            {
-                const index_pair& indices = p[i];
-                this->maskFrom->insertEntry(indices[0]);
-                this->maskFrom->insertEntry(indices[1]);
-            }
-        }
-    }
-
 };
 
 
@@ -663,15 +648,6 @@ public:
             }
         }
 #endif /* COMPLIANT_HAVE_SOFA_GL */
-    }
-
-    virtual void updateForceMask() override
-    {
-        const type::vector< unsigned >& indices = d_indices.getValue();
-
-        for( size_t i = 0, iend = indices.size(); i < iend; ++i )
-            if( this->maskTo->getEntry(i) )
-                this->maskFrom->insertEntry(indices[i]);
     }
 
 };

@@ -135,21 +135,6 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
         }
         K.compress();
     }
-
-    virtual void updateForceMask() override
-    {
-        const pairs_type& p = pairs.getValue();
-
-        for( size_t i = 0, iend = p.size(); i < iend; ++i )
-        {
-            if( this->maskTo->getEntry(i) )
-            {
-                const index_pair& indices = p[i];
-                this->maskFrom->insertEntry(indices[0]);
-                this->maskFrom->insertEntry(indices[1]);
-            }
-        }
-    }
 	
 };
 
@@ -329,22 +314,6 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
         }
 
 
-
-        virtual void updateForceMask() override
-        {
-            const pairs_type& p = pairs.getValue();
-
-            for( size_t i = 0, iend = p.size(); i < iend; ++i )
-            {
-                if( this->maskTo[0]->getEntry(i) )
-                {
-                    const pair& pp = p[i];
-                    this->maskFrom[pp[0][0]]->insertEntry(pp[0][1]);
-                    this->maskFrom[pp[1][0]]->insertEntry(pp[1][1]);
-                }
-            }
-        }
-
     };
 
 
@@ -439,19 +408,6 @@ class SOFA_Compliant_API DotProductMapping : public AssembledMapping<TIn, TOut>
             J.finalize();
         }
 
-
-        virtual void updateForceMask() override
-        {
-            const type::vector< unsigned >& indices = d_indices.getValue();
-
-            for( size_t i = 0, iend = indices.size(); i < iend; ++i )
-            {
-                if( this->maskTo->getEntry(i) )
-                {
-                    this->maskFrom->insertEntry(indices[i]);
-                }
-            }
-        }
 
     };
 

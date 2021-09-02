@@ -719,12 +719,6 @@ struct Assembly_test : public CompliantSolver_test
         DistanceMapping31::SPtr extensionMapping = addNew<DistanceMapping31>(extension);
         extensionMapping->setModels(pointPairDOF.get(),extensionDOF.get());
 
-
-        rigidDOF->forceMask.assign( rigidDOF->getSize(), true );
-        particleOnRigidDOF->forceMask.assign( particleOnRigidDOF->getSize(), true );
-        pointPairDOF->forceMask.assign( pointPairDOF->getSize(), true );
-        extensionDOF->forceMask.assign( extensionDOF->getSize(), true );
-
         UniformCompliance1::SPtr extensionCompliance = addNew<UniformCompliance1>(extension);
         extensionCompliance->compliance.setValue(0);
 

@@ -102,19 +102,6 @@ protected:
 		}
 		
 	}
-
-    virtual void updateForceMask() override
-    {
-        const type::vector<set_type>& s = set.getValue();
-
-        for( size_t i = 0, iend = s.size(); i < iend; ++i )
-        {
-            if( this->maskTo->getEntry(i) )
-            {
-                this->maskFrom->insertEntry(s[i].first);
-            }
-        }
-    }
 	
 };
 
