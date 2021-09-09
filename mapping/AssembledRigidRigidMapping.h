@@ -237,21 +237,6 @@ class SOFA_Compliant_API AssembledRigidRigidMapping : public AssembledMapping<TI
 		
 	}
 
-
-    virtual void updateForceMask() override
-    {
-        const source_vectype& src = source.getValue();
-
-        for(unsigned i = 0, n = src.size(); i < n; ++i)
-        {
-            if( this->maskTo->getEntry(i) )
-            {
-                const source_type& s = src[i];
-                this->maskFrom->insertEntry(s.first);
-            }
-        }
-    }
-
 };
 
 

@@ -101,22 +101,13 @@ public:
 
     void bwdMechanicalMapping(simulation::Node* /*node*/, core::BaseMapping* map) override
     {
-        //       cerr<<"MechanicalComputeForceVisitor::bwdMechanicalMapping "<<map->getName()<<endl;
-
-            ForceMaskActivate(map->getMechFrom() );
-            ForceMaskActivate(map->getMechTo() );
-
-            //map->accumulateForce();
             map->applyJT(mparams, lambda, lambda);
-
-            ForceMaskDeactivate( map->getMechTo() );
 
     }
 
 
     void bwdMechanicalState(simulation::Node* , core::behavior::BaseMechanicalState* mm) override
     {
-        mm->forceMask.activate(false);
     }
 
 
@@ -215,15 +206,11 @@ public:
 
     void bwdMechanicalMapping(simulation::Node* /*node*/, core::BaseMapping* map) override
     {
-        ForceMaskActivate( map->getMechFrom() );
-        ForceMaskActivate( map->getMechTo() );
         map->applyJT( this->mparams, res, res );
-        ForceMaskDeactivate( map->getMechTo() );
     }
 
     void bwdMechanicalState(simulation::Node* /*node*/, core::behavior::BaseMechanicalState* mm) override
     {
-        mm->forceMask.activate(false);
     }
 
     void bwdProjectiveConstraintSet(simulation::Node* /*node*/, core::behavior::BaseProjectiveConstraintSet* c) override

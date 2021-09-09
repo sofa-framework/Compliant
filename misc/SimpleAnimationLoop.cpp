@@ -108,8 +108,7 @@ class SOFA_Compliant_API SimpleAnimateVisitor : public Visitor {
             MechanicalPropagateOnlyPositionAndVelocityVisitor propagate(&mparams,
                                                                         next,
                                                                         VecCoordId::position(),
-                                                                        VecDerivId::velocity(),
-                                                                        true);
+                                                                        VecDerivId::velocity());
             propagate.execute(node);
 
             // stop after first solver

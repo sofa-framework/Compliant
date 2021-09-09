@@ -68,13 +68,7 @@ AssemblyVisitor::chunk::map_type AssemblyVisitor::mapping(simulation::Node* node
 	assert( node->mechanicalMapping->getTo().size() == 1 &&
 	        "only n -> 1 mappings are handled");
 
-    ForceMaskActivate(node->mechanicalMapping->getMechTo());
-    ForceMaskActivate(node->mechanicalMapping->getMechFrom());
-
     const vector<sofa::defaulttype::BaseMatrix*>* js = node->mechanicalMapping->getJs();
-
-    ForceMaskDeactivate(node->mechanicalMapping->getMechTo());
-
 
     vector<core::BaseState*> from = node->mechanicalMapping->getFrom();
 
