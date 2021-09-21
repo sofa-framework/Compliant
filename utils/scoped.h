@@ -6,7 +6,7 @@
 // author: maxime.tournier@inria.fr
 // license: LGPL 2.1
 
-#include <sofa/helper/AdvancedTimer.h>
+#include <sofa/helper/ScopedAdvancedTimer.h>
 
 namespace scoped {
 
